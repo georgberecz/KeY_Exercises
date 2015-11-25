@@ -1,7 +1,3 @@
-// @(#)$Id: Person.java 1199 2009-02-17 19:42:32Z smshaner $
-
-// Copyright (C) 2003 Iowa State University
-
 // This file is part of JML
 
 // JML is free software; you can redistribute it and/or modify
@@ -20,33 +16,22 @@
 
 
 public class Person {
-	private /*@ spec_public non_null @*/ String name;
-	private /*@ spec_public @*/ int weight;
+	private String name;
+	private int weight;
 	
-	/*@ requires n != null;
-	 @ ensures name == n && weight == 0; @*/
 	public Person(String n) {
 		name = n; weight = 0;
 	}
 	
-	/*@ ensures \result != null; @*/
 	public String toString() {
 		return "Person(\"" + name + "\","
 		+ weight + ")";
 	}
 	
-	//@ ensures \result == weight;
-	public /*@ pure @*/ int getWeight() {
+	public int getWeight() {
 		return weight;
 	}
 	
-	/*@ requires kgs >= 0;
-	 @ requires weight + kgs >= 0;
-	 @ ensures weight == \old(weight + kgs);
-	 @ also
-	 @ requires kgs < 0;
-	 @ signals_only IllegalArgumentException;
-	 @*/
 	public void addKgs(int kgs) {
 		if (kgs >= 0) {
 			weight += kgs;
